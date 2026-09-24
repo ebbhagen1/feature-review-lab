@@ -5,29 +5,28 @@ namespace feature_review_lab
     {
         static void Main(string[] args)
         {
-            string? name;  // ? tecknet tillåter att vi kan lagra text som tom (null) (Variabeln namn)
+            string? name;  
 
-            while (true)//Oändlig loop 
+            while (true)
             {
 
-                Console.WriteLine("Vad heter du??"); //Frågar användaren om namn
-                name = Console.ReadLine(); //Väntar på svar från användaren
+                Console.WriteLine("Vad heter du??"); 
+                name = Console.ReadLine()?.Trim(); //väljer att lägga in trim för att skriva ut namnet utan mellanslag. 
 
                 
-                if (string.IsNullOrWhiteSpace(name)) //kollar om användaren skrev tomt, mellanslag eller text
+                if (string.IsNullOrWhiteSpace(name)) 
 
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Du måste skriva ett namn"); //Om villkoret är sant körs If-loopen. 
+                    Console.WriteLine("Du måste skriva ett namn"); 
                     
                 }
 
-                else   //Om villkoret är falskt (giltigt namn så hoppar den hit. 
+                else   
                     
                 {
-                    Console.WriteLine($"Välkommen, {name}!"); //Skriver ut ett välkomstmeddalnde med namn
-                    break; //Avslutar programmet. 
-
+                    Console.WriteLine($"Välkommen, {name}!"); 
+                    break; 
                 }
                 
             }
@@ -35,6 +34,9 @@ namespace feature_review_lab
     }
 }
 
+/* Observation - Namnet skrevs ut mellanslag namn mellanslag
+ Konsekvens/risk - Det vara väldigt många kommentarer som gör att det blir svårt att följa koden. Blanda ihop raderna.
+Förslag - Förslag är att använda Console.ReadLine()?.Trim(); för att samla namnet "Anan" */
 
 
 
