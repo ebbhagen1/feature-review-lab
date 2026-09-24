@@ -1,43 +1,90 @@
 ﻿
+using System.ComponentModel;
+using System.Reflection.Metadata;
+using System.Collections.Generic;
 namespace feature_review_lab
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string? name;  
+            ResturantMenu myMenu = new ResturantMenu();
 
-            while (true)
+            myMenu.AddItem("Cesarsallad", 129.00m, "Starter");
+            myMenu.AddItem("Oxfile med klyftpotatis", 349.00m, "Main course");
+            myMenu.AddItem("Kladdkaka med grädde", 89.00m, "Dessert");
+
+            myMenu.PrintMenu();
+        }
+
+        public class Menu //hanterar enskild rätt 
+        {
+            public string? Dish { get; set; }
+            public decimal Price { get; set; }
+            public string? Category { get; set; }
+
+        }
+
+        public class ResturantMenu
+        {
+            public List<Menu> Items { get; set; } = new List<Menu>(); //Auto-implementerad lista som lagrar alla alterntiv
+
+            public void AddItem(string dish, decimal price, string category) //metod för att lägga till en rätt i menyn
             {
 
-                Console.WriteLine("Vad heter du??"); 
-                name = Console.ReadLine()?.Trim(); //väljer att lägga in trim för att skriva ut namnet utan mellanslag. 
-
-                
-                if (string.IsNullOrWhiteSpace(name)) 
-
+                Menu newItem = new Menu
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Du måste skriva ett namn"); 
-                    
-                }
+                    Dish = dish,
+                    Price = price,
+                    Category = category
+                };
 
-                else   
-                    
+                Items.Add(newItem);
+            }
+            public void PrintMenu() //Metod 
+
+            {
+                Console.WriteLine("Välkommen till PastaWorld!, här är vår meny:");
+                foreach (var item in Items)
                 {
-                    Console.WriteLine($"Välkommen, {name}!"); 
-                    break; 
+                    Console.WriteLine($" {item.Dish} | {item.Price} kr | {item.Category}");
                 }
-                
             }
         }
     }
 }
+                             
+           
 
-/* Observation - Namnet skrevs ut mellanslag namn mellanslag
- Konsekvens/risk - Det vara väldigt många kommentarer som gör att det blir svårt att följa koden. Blanda ihop raderna.
-Förslag - Förslag är att använda Console.ReadLine()?.Trim(); för att samla namnet "Anan" */
+        
+        //{
+        //    string? name;
 
+        //    while (true)
+        //    {
+
+        //        Console.WriteLine("Vad heter du??");
+        //        name = Console.ReadLine()?.Trim(); //väljer att lägga in trim för att skriva ut namnet utan mellanslag. 
+
+
+        //        if (string.IsNullOrWhiteSpace(name))
+
+        //        {
+        //            Console.WriteLine();
+        //            Console.WriteLine("Du måste skriva ett namn");
+
+        //        }
+
+        //        else
+
+        //        {
+        //            Console.WriteLine($"Välkommen, {name}!");
+        //            break;
+        //        }
+
+        //    }
+        //}
+       
 
 
 
